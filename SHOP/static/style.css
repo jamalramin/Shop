@@ -1,0 +1,30 @@
+body {
+    font-family: fira code ;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+form {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 12px;
+    flex-direction: column;
+}
+
+form input {
+    padding: 10px;
+    border-radius: 3px;
+}
+
+.logo img{
+    height: 40px;
+    width: 40px;
+}
+
+.services a {
+    color:white;
+    text-decoration: none;
+}

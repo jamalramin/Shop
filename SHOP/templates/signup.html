@@ -1,0 +1,28 @@
+{% extends "layout.html" %} {% block title %} {% endblock %} {% block main %}
+
+<form action="/register" method="POST">
+  <input
+    type="text"
+    placeholder="Enter Username"
+    autofocus
+    required
+    name="username"
+  />
+  <input
+    type="password"
+    placeholder="Enter password"
+    required
+    name="password1"
+  />
+  <input
+    type="password"
+    placeholder="Reenter your password"
+    required
+    name="password2"
+  />
+  <input class="bg-primary text-white border-0" type="submit" value="Create Account" />
+    {% if error %}
+    <p class="text-danger">{{ error_signup }}</p>
+    {% endif %}
+</form>
+{% endblock %}

@@ -1,0 +1,25 @@
+{% extends "layout.html" %} {% block title %} {% endblock %} {% block main %} {%
+include "navbar.html" %}
+<div class="container mt-4">
+  <div class="row g-4">
+    {% for product in products %}
+    <div class="col-12 col-md-4">
+      <div class="card h-100">
+        <img
+          src="{{ url_for('static', filename='laptop.png') }}"
+          alt="Laptop"
+          class="card-img-top"
+        />
+        <div class="card-body text-center">
+          <h5>{{ product.name }}</h5>
+
+          <a href="/buy" class="btn btn-danger">Buy</a>
+          <a href="/sell" class="btn btn-info">Sell</a>
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+</div>
+
+{%endblock %}

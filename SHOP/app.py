@@ -18,29 +18,33 @@ with sqlite3.connect("usersinfo.db") as connection:
 
 @app.route("/")
 def welcome():
+    # return render_template("index.html")
+
+   return render_template("products.html")
+
+
+@app.route("/index")
+def logout():
     return render_template("index.html")
 
 
 @app.route("/login", methods = ["GET", "POST"])
 def login():
-
-    
     if request.method == "POST":
-        username = request.form.get("username", "").strip()
-        password = request.form.get("password", "")
-        
+        username = request.form.get("username")
+        password = request.form.get("password")
         
         with sqlite3.connect("usersinfo.db") as connection:
-            user = connection.execute(
+            username = connection.execute(
                 "SELECT password_hash FROM users WHERE username = ?",
                 (username,)
             ).fetchone()
 
 
-        if username and check_password_hash(user[0], password):
+        if username and check_password_hash(username[0], password):
             session["username"] = username
             print("you have enterd seccusfully")
-            return redirect(url_for("home"))
+            return redirect(url_for("index"))
 
         else:
             return render_template("login.html",error="Username or password is incorrect!")
@@ -48,11 +52,11 @@ def login():
 
     return render_template("login.html")
 
-@app.route("/home")
-def home():
-    return render_template("home.html")
 
 
+@app.route("/products")
+def index():
+    return render_template("products.html")
 
 @app.route("/register", methods = ["GET", "POST"])
 def register():
@@ -88,8 +92,27 @@ def register():
 
         
     return render_template("signup.html")
+
         
+@app.route("/products")
+def products():
+    return render_template("products.html")
+
+@app.route("/sell")
+def sell():
+    return render_template("sell.html")
+
+@app.route("/buy")
+def buy():
+    return render_template("buy.html")
+
+@app.route("/history")
+def history():
+    return render_template("history.html")
+
 
 
 if __name__ == "__main__":
     app.run(debug=True)
+
+
